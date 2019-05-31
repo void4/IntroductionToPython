@@ -9,7 +9,7 @@ Programming is a superpower!
 
 Each programming language has its tradeoffs.
 
-Python is a great introductory language because how it looks like ("the syntax") is relatively easy to understand and how it works ("the semantics") are intuitive.
+Python is a great introductory language because how it looks like ("the syntax") is relatively easy to understand and how it works ("the semantics") is intuitive.
 
 It's great for automating small, general tasks by interacting with other software and doing art, science and math. Because the language manages the complicated stuff in the background for you, you can write short, but very powerful programs with it.
 
@@ -26,13 +26,26 @@ After the general part, I'll show you how you can
 
 ## Syntax and Semantics
 
-The main challenge new programmers encounter is understanding the way the interpreter steps through the program - this is called the control flow. To understand what your program does you need to understand what gets executed when. This is what differentiates programming from writing cooking recipes, you might to create some effect only when a condition is true, or repeat something a thousand times. When you want something to happen, you have to be explicit and specific about it, because the interpreter (unfortunately) cannot read minds. Luckily, in Python, only one thing is executed at the same time.
+The main challenge new programmers encounter is understanding the way the interpreter steps through the program - this is called the control flow. To understand what your program does you need to understand what gets executed when. You need to think a bit like the computer. Luckily, in Python, only one thing is executed at the same time.
+
+What also differentiates programming from writing more simple lists of instructions (like cooking recipes), is that you often want create some effects only when a condition is true, maybe at a specific time, or when the user typed something in. Things like repetition are also common. A process (that is what a running program is called) can have complex behavior.
+
+When you want something to happen, you have to be explicit and specific about it, because the interpreter (unfortunately) does not know what you want. When you want it to stir the pot, you have to tell it exactly how many times, because it won't guess by itself. There is no room for interpretation (hah!).
+
+The specificity can also be a bit frustrating, because a tiny mistake, like forgetting a colon, will result in the program running incorrectly, or not running at all. These errors (called "bugs", because they flew into and block your machine) are sometimes difficult and time-consuming to hunt down. If you are working on a specialized project, you will need to find and understand the right documentation. Patience is key.
+
+
 
 top down vs bottom up description
 
-Interpreting mode vs executing a file
+## Interactive mode vs File execution
 
-A program consists a text file with a special ending (.py for Python).
+You can start the interpreter by typing 'python' + Enter in your command line. If you do not give a filename, the interpreter enters the interactive mode, where you can type in programs line by line. You can leave it by typing `exit()` or pressing Ctrl+C.
+
+On the other hand, if you have a program file, you can start execution with:
+`python <programname>.py`
+
+A program file consists a text file with a special ending (.py for Python).
 
 Each line can contain a statement or nothing (whitespace or a completely empty line).
 
@@ -153,6 +166,9 @@ from PIL import Image, ImageDraw
 In your command line (on Windows: press the windows key and type 'cmd'), type
 'pip install Pillow'
 
+You can type this program in line by line in the interpreter
+`python`
+
 ```python
 # Now, we can import it
 from PIL import Image
@@ -203,6 +219,8 @@ img.show()
 ```
 
 `pip install flask`
+
+# server.py
 ```python
 
 from flask import Flask
@@ -212,4 +230,13 @@ app = Flask(__name__)
 def hello():
     return "Hello World!"
 
+app.run()
 ```
+
+Execute this program with
+`python server.py`
+
+Now open your browser on
+localhost:5000
+
+:)
