@@ -98,7 +98,24 @@ There are also advanced data types, like lists of values.
 
 This is what's in the box. What it can be is restricted by the data type.
 
+## Creating a variable
+
+The most common statement is the assigment, it consists of a name on the left hand side, an '=' and an expression on the right hand side.
+It's important to understand that '=' does not have the same meaning as in mathematics (where it means 'is equal', forever), but instead:
+"from now on, the name now points to this value" (it is "assigned" the value).
+
+if the name doesn't exist, a new box with that value is created.
+
+If the name exists, it now points to the new value.
+
+If the value on the right side has a complex (non-primitive) type, the name points to the same box the value is already in.
+
+## Deleting a variable
+
+del <name>
+
 ## Syntax
+
 
 ### Addition
 
@@ -116,6 +133,30 @@ If both values are numbers, the entire expression is replaced with the result of
 The same operator is always evaluated left to right.
 
 When you combine this with other number operators, like '*' (multiplication) or '/' (division), PEMDAS
+
+### Conditionals
+
+conditional expression
+
+if <condition>:
+   <indented block>
+
+
+if <condition>:
+  <indented block>
+else:
+  <indented block>
+
+So here, only one 'branch' is executed.
+
+if <condition1>:
+  <indented block>
+elif <condition2>:
+  <indented block>
+elif <condition3>:
+  <indented block>
+else:
+  <indented block>
 
 ### Functions
 
