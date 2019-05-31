@@ -7,23 +7,39 @@ Programming is a superpower!
 
 ## Choosing the right language
 
-Python is a great introductory language because how it looks like ("the syntax") is relatively easy to understand and how it works ("the semantics") is intuitive.
+Each programming language has its tradeoffs.
 
-Python is great for automating small tasks by interacting with other software and doing art, science and mathematics. Because the language manages the complicated stuff in the background for you, you can write short, but very powerful programs with it.
+Python is a great introductory language because how it looks like ("the syntax") is relatively easy to understand and how it works ("the semantics") are intuitive.
+
+It's great for automating small, general tasks by interacting with other software and doing art, science and math. Because the language manages the complicated stuff in the background for you, you can write short, but very powerful programs with it.
 
 Writing software for complex systems (like a self-driving car), or in fact anything that needs to be VERY fast or secure, is not Pythons domain, there are much better languages for that.
 
+
+## What you will be able to do after this tutorial
+
+The greatest strength of Python is its wealth of libraries
+
+After the general part, I'll show you how you can
+- write programs that draw on images
+- create a small website
+
 ## Syntax and Semantics
 
-A program consists a text file with a special ending (.py for Python). A program called the interpreter executes the program line by line, starting from the top.
+The main challenge new programmers encounter is understanding the way the interpreter steps through the program - this is called the control flow. To understand what your program does you need to understand what gets executed when. This is what differentiates programming from writing cooking recipes, you might to create some effect only when a condition is true, or repeat something a thousand times. When you want something to happen, you have to be explicit and specific about it, because the interpreter (unfortunately) cannot read minds. Luckily, in Python, only one thing is executed at the same time.
 
-A line can contain a statement or nothing (whitespace or a completely empty line).
+top down vs bottom up description
 
+Interpreting mode vs executing a file
+
+A program consists a text file with a special ending (.py for Python).
+
+Each line can contain a statement or nothing (whitespace or a completely empty line).
+
+A series of lines with the same indentation is called a block. A program called the interpreter executes a block line by line, starting from the top.
 When the interpreter encounters an statement it executes it and goes to the next line. Empty lines and everything after a '#' (a comment) are ignored.
 
-A series of lines with the same indentation is called a block. Each statement in the block is executed after the other.
-
-The way the interpreter steps through the program is called the control flow. It's not always one line after the other, a statement may contain another block. In a loop for example, a block can be executed many times.
+It's not always one line after the other, a statement may contain another block. In a loop for example, a block can be executed many times.
 
 An expression is replaced by the result of its operation and may have some other side effect (like storing something in memory or printing something on your screen or REALLY printing something).
 
@@ -90,17 +106,110 @@ When you combine this with other number operators, like '*' (multiplication) or 
 
 ### Functions
 
-A function is a block of statements with a name.
+A function is a block of statements with a name. You can call the function with input values (arguments) and the function can return output values. Any combination is possible, there are functions with an input value but no output value and the other way around. Some have both, some have neither.
 
-You can call the function with input values (arguments) and the function can return output values. Any combination is possible, there are functions with an input value but no output value and the other way around. Some have both, some have neither.
+#### Calling a function
 
-In Python, you call a function by writing its name, then a pair of parentheses and within these parens comma separated arguments. Like this:
+In Python, you call a function by writing its name, then a pair of parentheses and within these the arguments, separated by a comma. Like this:
 
 print("Hello world!")
 
+When a function is called, the control jumps from the line where it was called to the place where the function was defined. When the function returns a value, the function call is replaced with that value and the expression is evaluated normally.
+
+#### Importing a function
+
 # Import the power function from the math library
+from <libraryname> import <object name>
+
 from math import pow
 pow(2, 3)
 >>>8
 
-When a function is called, the control jumps from the line where it was called to the place where the function was defined. When the function returns a value, the function call is replaced with that value and the expression is evaluated normally.
+
+#### Defining a function
+
+When the interpreter encounters a function definition, it doesn't execute it, but just remembers its name so you can call it later.
+
+def <functionname>(<arg1Name>, <arg2Name>):
+    <firstStatement>
+    <secondStatement>
+    <etc.>
+
+def square(number):
+    squared_number = number * number
+    return squared_number
+
+kwargs
+
+## Drawing images
+
+Here we are!
+
+First, we need to install the library that does most of the work for us.
+
+The library is called Pillow and we install it with *pip*, the Python's package manager. After we have installed the library, our programs can use it
+from PIL import Image, ImageDraw
+
+In your command line (on Windows: press the windows key and type 'cmd'), type
+'pip install Pillow'
+
+```python
+# Now, we can import it
+from PIL import Image
+
+# The Image Library object has two useful functions, Image.new and Image.open:
+
+# Say, we want to create an new image with a width and height of 512 pixels
+width = 512
+height = 512
+
+# Returns a new image object with a white background
+img = Image.new("RGB", (width, height), color="white")
+
+# If you want to draw on top of an existing image:
+#   1. put it into the same folder as your program
+#   2. use the open function to get an image object
+img = Image.open("myImage.png")
+# If it isn't in the same folder, just give Image.open the full path to it
+
+# To see the image as it currently is, use
+img.show()
+
+# You can also use img.save to store the image in a file
+# Be careful not to overwrite any existing file if you don't want that
+img.save("outputname.png")
+
+# Now, the Image object in img only lets us get and put single pixels, which is not very useful.
+# ImageDraw to the rescue!
+from PIL import ImageDraw
+
+draw = ImageDraw.Draw(img)
+# *draw* now refers to a Draw object, which lets us draw more complex shapes on the image!
+
+# This draws a line, the first two coordinates are the x and y position of one end,
+# the last two the x and y of the other
+draw.line([0, 0, 200, 200])
+
+img.show()
+# It's a line!
+
+draw.rectangle([20, 20, 40, 400], fill="green", outline="black")
+
+img.show()
+# It's the hulk!
+
+# If you want to experiment more, you can explore the documentation here:
+# https://pillow.readthedocs.io/en/3.1.x/reference/ImageDraw.html#functions
+```
+
+`pip install flask`
+```python
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+```
