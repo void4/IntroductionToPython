@@ -1,5 +1,9 @@
 # Introduction to programming with the Python language
 
+I found this intro, use this instead: 
+
+http://automatetheboringstuff.com/
+
 ## Why should I learn programming?
 Because you can sense and affect things that are normally out of your reach, compute things faster than you can do on your own. You will be able to build, understand, improve and automate things.
 
